@@ -1,8 +1,8 @@
-<% provide(:title, "Home") %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title><%= yield(:title) %> | Rate My Meeting App</title>
+       
+        <title><%= full_title(yield(:title)) %></title>
         <meta charset="utf-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,6 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
     <body>
-    <h1> Test </h1>
        <%= yield %>
     </body>
 </html>
