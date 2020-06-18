@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       reset session 
       log_in user
+      redirect_to user
     else
       #show me an error
       flash.now[:danger] = "Not the right combo of email and password"
