@@ -7,11 +7,13 @@
 
 
 
-<%= form_with do %>
+<%= form_with model: @rating, class: "rating-form" do |f| %>
 
-    <%= number_field(:ratings, in:1.0..10.0, step: 1.0) %>
-    <%= submit_tag("Rate") %>
+    <%= f.number_field(:ratings, in:1.0..10.0, step: 1.0) %>
+    <%= f.submit("Rate") %>
 <% end %>
+
+
 
     
 </div>
