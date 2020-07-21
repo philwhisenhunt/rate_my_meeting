@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'rating/create'
-  get 'rating/edit'
-  get 'rating/delete'
+  resources :ratings
   get 'sessions/new'
   get 'users/new'
   root 'static_pages#home'
