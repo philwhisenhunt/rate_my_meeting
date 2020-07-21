@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'rating/create'
+  get 'rating/edit'
+  get 'rating/delete'
   get 'sessions/new'
   get 'users/new'
   root 'static_pages#home'
@@ -8,5 +11,5 @@ Rails.application.routes.draw do
   post '/login', to: 'session#create'
   delete '/logout', to: 'session#destroy'
   # get '/review', to: 'static_pages/review'
-get 'static_pages/rate'
+  get 'static_pages/rate'
 end
