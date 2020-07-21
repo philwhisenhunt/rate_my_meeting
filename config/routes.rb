@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   get '/login', to: 'session#new'
   post '/login', to: 'session#create'
   delete '/logout', to: 'session#destroy'
-  get '/review', to: 'session#review'
-
+  # get '/review', to: 'static_pages/review'
+get '/rate', to: 'static_pages/rate'
 end
