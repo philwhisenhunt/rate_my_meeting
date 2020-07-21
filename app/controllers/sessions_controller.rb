@@ -18,4 +18,8 @@ class SessionsController < ApplicationController
   def destroy
   end
 
+  def review
+    render 'review'
+  end
+
 end
