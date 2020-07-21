@@ -10,5 +10,4 @@ Rails.application.routes.draw do
   delete '/logout', to: 'session#destroy'
   # get '/review', to: 'static_pages/review'
   get 'static_pages/rate'
-  get 'ratings/new'
 end
