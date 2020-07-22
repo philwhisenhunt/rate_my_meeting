@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    has_many :ratings, dependent:
+    # has_many :ratings
     before_save { self.email = email.downcase }
     validates :name, prescence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+/.]a-z]+\z/i
