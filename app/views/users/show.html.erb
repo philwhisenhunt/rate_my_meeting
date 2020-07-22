@@ -1,0 +1,8 @@
+<div class="col-md-8">
+<% if @user.ratings.any? %>
+<h3>Ratings (<%= @user.microposts.count %>)</h3>
+<ol class = "ratings">
+    <%= render @ratings %>
+</ol>
+<% end %>
+</div>
