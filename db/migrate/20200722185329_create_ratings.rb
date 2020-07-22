@@ -6,5 +6,6 @@ class CreateRatings < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+    add_index :ratings, [:user_id, :created_at]
   end
 end

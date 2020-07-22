@@ -10,14 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_173420) do
+ActiveRecord::Schema.define(version: 2020_07_22_185329) do
 
   create_table "ratings", force: :cascade do |t|
     t.integer "content"
-    t.integer "user_id"
-    t.date "meeting"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "created_at"], name: "index_ratings_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -29,4 +30,5 @@ ActiveRecord::Schema.define(version: 2020_07_21_173420) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "ratings", "users"
 end
