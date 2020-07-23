@@ -5,14 +5,14 @@ User.create!(name: "Example User",
             password_confirmation: "foobar")
 
 #Generate a bunch of additional users.
-99.time do |n|
-    name = Fake::Name.name
+99.times do |n|
+    name = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
     password = "password"
     User.create!(name: name,
-    email: email,
-    password: password,
-    password_confirmation: password)
+                email: email,
+                password: password,
+                password_confirmation: password)
 end
 
 # Generate ratings for a subset of users.
