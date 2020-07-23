@@ -1,12 +1,10 @@
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-      User:
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+<%= will_paginate %>
+<ul class="users">
+  <% @users.each do |user| %>
+    <%= render @users %>
+  <% end %>
+</ul>
 
-</div>
+<%= will_paginate %>

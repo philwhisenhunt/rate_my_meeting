@@ -1,5 +1,4 @@
 <li id="rating-<%= rating.id %>">
-  <%= link_to gravatar_for(rating.user, size: 50), rating.user %>
   <span class="user"><%= link_to rating.user.name, rating.user %></span>
   <span class="content"><%= rating.content %></span>
   <span class="timestamp">
