@@ -14,4 +14,10 @@ class RatingsController < ApplicationController
         #Save it to the date of the current date
         day = Time.day
     end
+
+    def update
+        # Find the current entry in the database
+        # Accept the new input of the rating
+        # Add the new rating
+    end
 end
