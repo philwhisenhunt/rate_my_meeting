@@ -20,4 +20,12 @@ class RatingsController < ApplicationController
         # Accept the new input of the rating
         # Add the new rating
     end
+    
+        
+    def show
+        #Get the user
+        @user = User.find(params[:id])
+        # Get the rating by the users id
+        @rating = User.ratings
+    end
 end
