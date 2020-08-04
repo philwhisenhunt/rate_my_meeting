@@ -6,9 +6,12 @@
       <li><%= link_to "Home",   '#' %></li>
       <li><%= link_to "Help",   '#' %></li>
       <% if logged_in? %>
-        <li>LOGGED IN</li>
+      <li><%= link_to "Logout",   '/logout' %></li>
       <% end %>
-      
+
+      <% if !logged_in? %>
+        <li><%= link_to "Login",   '/login' %></li>
+      <% end %>
     </ul>
   </nav>
 </div>
