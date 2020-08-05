@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # @ratings = @user.ratings.paginate(page: params[:page])
-    @ratings = @user.ratings
+    # ratings = @user.ratings
+    # @ratings = @user.ratings.paginate(page: params[:page])
+    @ratings = @user.ratings.paginate(page: params[:page])
+    # byebug
+
   end
 end
