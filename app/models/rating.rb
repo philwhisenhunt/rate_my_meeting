@@ -4,4 +4,8 @@ class Rating < ApplicationRecord
     validates :user_id, presence: true
     validates :content, presence: true
 
+    def content
+        puts "here"
+    end
+
 end
