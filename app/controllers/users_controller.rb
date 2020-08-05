@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     # ratings = @user.ratings
     # @ratings = @user.ratings.paginate(page: params[:page])
     @ratings = @user.ratings.paginate(page: params[:page])
+
     # byebug
 
   end
