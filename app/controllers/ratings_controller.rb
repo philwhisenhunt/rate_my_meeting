@@ -26,6 +26,6 @@ class RatingsController < ApplicationController
         #Get the user
         @user = User.find(params[:id])
         # Get the rating by the users id
-        @rating = User.ratings
+        @ratings = User.find(params[:id]).ratings
     end
 end
