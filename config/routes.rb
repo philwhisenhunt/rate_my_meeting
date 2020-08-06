@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :users
+  resources :ratings
   get 'sessions/new'
   get 'users/new'
   root 'static_pages#home'
@@ -12,5 +13,5 @@ Rails.application.routes.draw do
   get 'static_pages/rate'
   get '/signup', to: 'users#new'
   get '/ratings', to: 'ratings#index'
-
+  # get '/ratings/:meeting_date', to: 'ratings#show'
 end

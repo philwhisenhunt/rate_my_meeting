@@ -17,8 +17,12 @@ end
 # Generate ratings for a subset of users.
 
 users = User.order(:created_at).take(6)
-50.times do
+50.times do |i|
   content = rand(11)
-  users.each { |user| user.ratings.create!(content: content) }
+  meeting_date = (Date.today - i).to_s
+  # meeting_date = "2020-06-18"
+  puts meeting_date
+  users.each { |user| user.ratings.create!(content: content,
+                                            meeting_date: meeting_date) }
 
 end

@@ -23,7 +23,25 @@ class RatingsController < ApplicationController
     
         
     def index
-        @users = User.paginate(page: params[:page])
+        # @users = User.paginate(page: params[:page])
         @ratings = Rating.paginate(page: params[:page])
+    end
+
+    def show
+        # @users = User.paginate(page: params[:page])
+
+        # @ratings = Rating.paginate(meeting_date: params[:meeting_date])
+        # # @ratings = Rating.paginate(page: params[:meeting_date])
+        # byebug
+        # @ratings = Rating.paginate(page: params[:page])
+        # @rating = Rating.
+        # @ratings = Rating.find(meeting_date: params[:meeting_date])
+        # @ratings = Rating.find(:id)
+        # @user = User.find(params[:id])
+        @ratings = Rating.find(params[:id])
+        byebug
+
+
+
     end
 end
