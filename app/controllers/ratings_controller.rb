@@ -24,7 +24,17 @@ class RatingsController < ApplicationController
         
     def index
         # @users = User.paginate(page: params[:page])
-        @ratings = Rating.paginate(page: params[:page])
+        # @ratings = Rating.paginate(page: params[:page])
+
+        if params[:meeting_date] == "2020-08-06"
+            @meeting_date = "2020-08-06"
+            @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+        else
+            @meeting_date = "2020-08-05"
+
+            @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+        end
+
     end
 
     def show
@@ -45,10 +55,10 @@ class RatingsController < ApplicationController
 
         # byebug
         # @average = @ratings.average
-            if params[:meeting_date] == "2020-08-06"
-                @ratings = Rating.where(meeting_date: "2020-08-06").paginate(page: params[:page])
+            if params[:meeting_date]
+                @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
             else
-                @ratings = Rating.where(meeting_date: "2020-08-05").paginate(page: params[:page])
+                @ratings = Rating.first
             end
     
 
