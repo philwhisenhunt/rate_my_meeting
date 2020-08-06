@@ -15,8 +15,10 @@ User.create!(name:  "Example User",
                password_confirmation: password)
 end
 # Generate ratings for a subset of users.
+
 users = User.order(:created_at).take(6)
 50.times do
-    content = rand(11)
-    users.each { |user| user.ratings.create!(content: content) }
+  content = rand(11)
+  users.each { |user| user.ratings.create!(content: content) }
+
 end
