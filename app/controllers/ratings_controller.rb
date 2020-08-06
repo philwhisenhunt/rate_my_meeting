@@ -22,10 +22,8 @@ class RatingsController < ApplicationController
     end
     
         
-    def show
-        #Get the user
-        @user = User.find(params[:id])
-        # Get the rating by the users id
-        @ratings = User.find(params[:id]).ratings
+    def index
+        @users = User.paginate(page: params[:page])
+        @ratings = Rating.paginate(page: params[:page])
     end
 end

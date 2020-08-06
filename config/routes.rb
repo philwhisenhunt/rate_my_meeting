@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   # get '/review', to: 'static_pages/review'
   get 'static_pages/rate'
   get '/signup', to: 'users#new'
+  get '/ratings', to: 'ratings#index'
 
 end

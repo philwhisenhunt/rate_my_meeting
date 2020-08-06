@@ -1,1 +1,11 @@
-<h1> All user ratings </h1>
+
+<% provide(:title, 'All users') %>
+<h1>All Ratings</h1>
+<%= will_paginate %>
+<ul class="ratings">
+  <% @ratings.each do |user| %>
+    <%= render @ratings %>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
