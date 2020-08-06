@@ -40,11 +40,17 @@ class RatingsController < ApplicationController
         # @user = User.find(params[:id])
         # @ratings = Rating.find(params[:id])
         # @users = User.where(activated: true).paginate(page: params[:page])
-        @ratings = Rating.where(meeting_date: "2020-08-06").paginate(page: params[:page])
+        # @ratings = Rating.where(meeting_date: "2020-08-06").paginate(page: params[:page])
         # byebug
 
         # byebug
         # @average = @ratings.average
+            if params[:meeting_date] == "2020-08-06"
+                @ratings = Rating.where(meeting_date: "2020-08-06").paginate(page: params[:page])
+            else
+                @ratings = Rating.where(meeting_date: "2020-08-05").paginate(page: params[:page])
+            end
+    
 
 
 
