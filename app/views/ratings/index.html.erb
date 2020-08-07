@@ -1,11 +1,18 @@
 
-<% provide(:title, 'All users') %>
+<% provide(:title, 'All Ratings') %>
 <h1>All Ratings</h1>
-<%= will_paginate %>
-<ul class="ratings">
-  <% @ratings.each do |user| %>
-    <%= render @ratings %>
-  <% end %>
-</ul>
 
-<%= will_paginate %>
+<% if @ratings.nil? %>
+  <%= render 'filter_empty' %>
+  <% else %>
+
+    <%= will_paginate %>
+    <ul class="ratings">
+      <% @ratings.each do |user| %>
+        <%= render @ratings %>
+      <% end %>
+    </ul>
+
+    <%= will_paginate %>
+
+<% end %>
