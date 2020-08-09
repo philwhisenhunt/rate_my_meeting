@@ -30,6 +30,7 @@ class RatingsController < ApplicationController
             @meeting_date = params[:meeting_date]
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
         else
+            #Otherwise return everything
             @ratings = nil
         end
 
