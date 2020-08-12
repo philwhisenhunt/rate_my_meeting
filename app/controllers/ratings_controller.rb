@@ -16,6 +16,9 @@ class RatingsController < ApplicationController
         #Accept the input of the rating
         #Save it to the date of the current date
         day = Time.day
+        @meeting_date = day
+        @ratings = Rating.where(meeting_date: @meeting_date)
+
     end
 
     def update
