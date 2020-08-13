@@ -1,0 +1,13 @@
+<% provide(:title, 'All Ratings') %>
+<h1>New Ratings</h1>
+
+<%= form_with do |f| %>
+    <%= f.label :meeting_date %>
+    <%= date_field(:user, :born_on) %>
+
+    <%= f.label :rating %>
+    <%= range_field(:rating, :rating, in: 1..10) %>
+
+    <%= submit_tag "Submit Rating" %>
+
+<% end %>
