@@ -6,6 +6,7 @@
     <%= date_field(:user, :born_on) %>
 
     <%= f.label :rating %>
+    <h5>Rate from 1 to 10</h5>
     <%= range_field(:rating, :rating, in: 1..10) %>
 
     <%= submit_tag "Submit Rating" %>
