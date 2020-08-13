@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   get 'static_pages/rate'
   get '/signup', to: 'users#new'
   get '/ratings', to: 'ratings#index'
+  get '/rate', to: 'ratings#new'
   # get '/ratings/:meeting_date', to: 'ratings#show'
 end
