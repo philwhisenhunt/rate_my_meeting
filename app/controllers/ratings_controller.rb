@@ -73,4 +73,9 @@ class RatingsController < ApplicationController
 
 
     end
+
+    def new
+        #display the page that asks for a rating
+        #make a post request to save the new rating
+    end
 end
