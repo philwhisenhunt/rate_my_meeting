@@ -26,7 +26,7 @@ class RatingsController < ApplicationController
         @rating = User.rating.where(meeting_date: @meeting_date)
         # Accept the new input of the rating
         # Add the new rating
-        User.rating.where(meeting_date: @meeting_date) = @input
+        # User.rating.where(meeting_date: @meeting_date) = @input
 
     end
     
