@@ -82,7 +82,7 @@ class RatingsController < ApplicationController
 
     def create
         @rating = current_user.ratings.new(rating_params)
-        byebug
+        # byebug
         if @rating.save
             flash[:success] = "Rating created!"
             redirect_to root_url
