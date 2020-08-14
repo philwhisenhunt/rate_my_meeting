@@ -1,14 +1,16 @@
 <% provide(:title, 'All Ratings') %>
 <h1>New Ratings</h1>
 
-<%= form_with do |f| %>
+<%= form_with(model: @rating, local: true) do |f| %>
     <%= f.label :meeting_date %>
     <%= date_field(:user, :born_on) %>
 
     <%= f.label :rating %>
     <h5>Rate from 1 to 10</h5>
-    <%= range_field(:rating, :rating, in: 1..10) %>
+    <%= range_field(:content, in: 1..10) %>
 
-    <%= submit_tag "Submit Rating" %>
+   
+
+    <%= f.submit "Rate!", class: "btn btn-primary" %>
 
 <% end %>
