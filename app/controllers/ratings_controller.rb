@@ -77,16 +77,22 @@ class RatingsController < ApplicationController
     def new
         #display the page that asks for a rating
         #make a post request to save the new rating
+        @rating = current_user.ratings.new
     end
 
     def create
-        @rating = current_user.ratings.build(rating_params)
+        @rating = current_user.ratings.new(rating_params)
+        byebug
+        if @rating.save
+            flash[:success] = "Rating created!"
+            redirect_to root_url
+        end
     end
 
     private
 
  
     def rating_params
-        params.require(:rating).permit(:content)
+        params.require(:rating).permit(:rating, :meeting_date)
     end
 end
