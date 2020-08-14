@@ -18,11 +18,11 @@ end
 
 users = User.order(:created_at).take(6)
 50.times do |i|
-  content = rand(11)
+  rating = rand(11)
   meeting_date = (Date.today - i).to_s
   # meeting_date = "2020-06-18"
   puts meeting_date
-  users.each { |user| user.ratings.create!(content: content,
+  users.each { |user| user.ratings.create!(rating: rating,
                                             meeting_date: meeting_date) }
 
 end
