@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/ratings', to: 'ratings#index'
   get '/rate', to: 'ratings#new'
+  post '/ratings/new', to: "ratings#create"
   # get '/ratings/:meeting_date', to: 'ratings#show'
 end
