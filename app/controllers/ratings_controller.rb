@@ -68,7 +68,7 @@ class RatingsController < ApplicationController
             flash[:success] = "Rating created!"
             redirect_to root_url
         else
-            flash[:error]
+            flash[:error] = "Rating was not saved"
             redirect_to root_url
 
         end
