@@ -8,8 +8,9 @@ class RatingsController < ApplicationController
         @ratings.sum
 
         #Divide by the number of ratings given
-        @ratings / @rating.count
         #Return the average number
+        @daily_average = @ratings / @rating.count
+
     end
 
     def save
