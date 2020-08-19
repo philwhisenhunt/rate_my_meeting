@@ -2,13 +2,13 @@ class RatingsController < ApplicationController
 
     def average
         #Find the days date
+        @meeting_date = params # add params here
         @ratings = Rating.where(meeting_date: @meeting_date)
         #Find all ratings for that date
         #Add all the ratings together
         @ratings.sum
 
-        #Divide by the number of ratings given
-        #Return the average number
+        #Divide by the number of ratings given and Return the average number
         @daily_average = @ratings / @rating.count
 
     end
