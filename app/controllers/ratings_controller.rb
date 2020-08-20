@@ -2,7 +2,7 @@ class RatingsController < ApplicationController
 
     def average
         #Find the days date
-        @meeting_date = params # add params here
+        @meeting_date = params[:meeting_date] # add params here
         @ratings = Rating.where(meeting_date: @meeting_date)
         #Find all ratings for that date
         #Add all the ratings together
