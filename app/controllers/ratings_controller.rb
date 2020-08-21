@@ -2,10 +2,12 @@ class RatingsController < ApplicationController
 
     def average
         #Find the days date
+        
         @meeting_date = params[:meeting_date] # add params here
         @ratings = Rating.where(meeting_date: @meeting_date)
         #Find all ratings for that date
         #Add all the ratings together
+        byebug
         @ratings.sum
 
         #Divide by the number of ratings given and Return the average number
@@ -59,7 +61,9 @@ class RatingsController < ApplicationController
     def new
         #display the page that asks for a rating
         #make a post request to save the new rating
-        @rating = current_user.ratings.new
+        if current_user
+            @rating = current_user.ratings.new
+        end
     end
 
     def create
