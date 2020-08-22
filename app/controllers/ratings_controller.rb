@@ -63,6 +63,10 @@ class RatingsController < ApplicationController
         #make a post request to save the new rating
         if current_user
             @rating = current_user.ratings.new
+        
+        else
+            redirect_to login
+
         end
     end
 
