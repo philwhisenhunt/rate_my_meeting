@@ -20,7 +20,13 @@ class RatingsController < ApplicationController
         #Save it to the date of the current date
         day = Time.day
         @meeting_date = day
-        @ratings = Rating.where(meeting_date: @meeting_date)
+        @ratings = User.ratings.where(meeting_date: @meeting_date)
+
+        if Rating.where(meeting_date: @meeting_date)
+            #overwrite it
+            #Display Updated rating
+        end
+        #otherwise just save it and flash saved rating
 
     end
 
