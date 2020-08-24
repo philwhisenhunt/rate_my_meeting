@@ -73,7 +73,7 @@ class RatingsController < ApplicationController
             @rating = current_user.ratings.new
         
         else
-            redirect_to login
+            redirect_to root_url
 
         end
     end
