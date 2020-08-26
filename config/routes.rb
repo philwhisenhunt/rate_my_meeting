@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :ratings
   get 'sessions/new'
   get 'users/new'
-  root 'sessions#new'
+  root 'ratings#new'
   get 'static_pages/home'
   get 'static_pages/help'
   get '/login', to: 'sessions#new'
