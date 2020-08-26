@@ -80,6 +80,7 @@ class RatingsController < ApplicationController
     end
 
     def new
+        
         #display the page that asks for a rating
         #make a post request to save the new rating
         if current_user
@@ -92,9 +93,12 @@ class RatingsController < ApplicationController
     end
 
     def create
+        
+
         @rating = current_user.ratings.new(rating_params)
         # byebug
         if @rating.save
+            byebug
             flash[:success] = "Rating created!"
             redirect_to root_url
         else
