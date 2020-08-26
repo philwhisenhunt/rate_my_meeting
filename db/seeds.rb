@@ -20,7 +20,7 @@ users = User.order(:created_at).take(6)
 # srand(time(0))
 50.times do |i|
   # rating = rand(11)
-  meeting_date = (Date.today - i).to_s
+  meeting_date = ((Date.today - 1) - i).to_s
   # meeting_date = "2020-06-18"
   # puts meeting_date
   # puts rand(1...11)
