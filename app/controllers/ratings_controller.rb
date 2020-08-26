@@ -50,9 +50,14 @@ class RatingsController < ApplicationController
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
             my_array = []
             @ratings.each do |thing|
-               my_array[1] = thing
+               my_array.push(thing.rating)
+            end
+            total = 0
+            my_array.each do |piece|
+                total = total + piece
             end
 
+            @average = total / my_array.count
             byebug
             # @average =  sum(@ratings.rating) / @rating.count
             
