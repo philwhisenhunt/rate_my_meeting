@@ -58,7 +58,7 @@ class RatingsController < ApplicationController
             end
 
             @average = total / my_array.count
-            byebug
+            # byebug
             # @average =  sum(@ratings.rating) / @rating.count
             
         else
