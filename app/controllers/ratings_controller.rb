@@ -56,8 +56,11 @@ class RatingsController < ApplicationController
             my_array.each do |piece|
                 total = total + piece
             end
-
-            @average = total / my_array.count
+            if my_array.count > 0
+                @average = total / my_array.count
+            else
+                @average = "N/A"
+            end
             # byebug
             # @average =  sum(@ratings.rating) / @rating.count
             
