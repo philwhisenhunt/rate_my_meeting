@@ -45,10 +45,12 @@ class RatingsController < ApplicationController
     def index
         # @users = User.paginate(page: params[:page])
         # @ratings = Rating.paginate(page: params[:page])
-
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+            byebug
+            @average =  sum(@ratings.rating) / @rating.count
+            
         else
             #Otherwise return everything
             @ratings = nil
@@ -60,6 +62,7 @@ class RatingsController < ApplicationController
         
         if params[:meeting_date]
             @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
+
         else
             @ratings = Rating.first
         end
