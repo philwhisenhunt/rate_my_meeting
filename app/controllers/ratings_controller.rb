@@ -87,7 +87,7 @@ class RatingsController < ApplicationController
             @rating = current_user.ratings.new
         
         else
-            redirect_to root_url
+            redirect_to login_url
 
         end
     end
@@ -98,12 +98,12 @@ class RatingsController < ApplicationController
         @rating = current_user.ratings.new(rating_params)
         # byebug
         if @rating.save
-            byebug
+            # byebug
             flash[:success] = "Rating created!"
-            redirect_to root_url
+            redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
         else
             flash[:error] = "Rating was not saved"
-            redirect_to root_url
+            redirect_to root_url 
 
         end
     end
