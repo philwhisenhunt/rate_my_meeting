@@ -48,20 +48,20 @@ class RatingsController < ApplicationController
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
-            my_array = []
-            @ratings.each do |thing|
-               my_array.push(thing.rating)
-            end
-            total = 0
-            my_array.each do |piece|
-                total = total + piece
-            end
-            if my_array.count > 0
-                @average = total / my_array.count
-            else
-                @average = "N/A"
-            end
-           
+            # my_array = []
+            # @ratings.each do |thing|
+            #    my_array.push(thing.rating)
+            # end
+            # total = 0
+            # my_array.each do |piece|
+            #     total = total + piece
+            # end
+            # if my_array.count > 0
+            #     @average = total / my_array.count
+            # else
+            #     @average = "N/A"
+            # end
+           @rating.average
             
         else
             #Otherwise return everything
