@@ -61,8 +61,7 @@ class RatingsController < ApplicationController
             else
                 @average = "N/A"
             end
-            # byebug
-            # @average =  sum(@ratings.rating) / @rating.count
+           
             
         else
             #Otherwise return everything

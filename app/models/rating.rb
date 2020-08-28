@@ -15,8 +15,7 @@ class Rating < ApplicationRecord
         # @ratings_sum = @ratings.sum
         # average = @ratings_sum/@ratings_count
 
-        @meeting_date = params[:meeting_date]
-        @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+
         my_array = []
         @ratings.each do |thing|
            my_array.push(thing.rating)
