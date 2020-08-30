@@ -4,7 +4,7 @@ class Rating < ApplicationRecord
     # validates :user_id, presence: true
     # validates :content, presence: true
 
-    def average(ratings)
+    def average
         # @ratings = ratings
         # @ratings_count = @ratings.count
         # @ratings.each do |rating|
