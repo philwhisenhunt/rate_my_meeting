@@ -17,8 +17,8 @@ class Rating < ApplicationRecord
 
 
         my_array = []
-        @ratings.each do |thing|
-           my_array.push(thing.rating)
+        @ratings.each do |rating|
+           my_array.push(rating.rating)
         end
         total = 0
         my_array.each do |piece|
