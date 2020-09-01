@@ -61,7 +61,7 @@ class RatingsController < ApplicationController
             # else
             #     @average = "N/A"
             # end
-           @rating.average
+           @rating = @rating.average
             
         else
             #Otherwise return everything
