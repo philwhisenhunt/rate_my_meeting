@@ -65,7 +65,7 @@ class RatingsController < ApplicationController
             
         else
             #Otherwise return everything
-            @ratings = nil
+            render 'fragment' #todo: add file piece the include here
         end
 
     end
