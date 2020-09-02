@@ -7,4 +7,8 @@ module ApplicationHelper
             page_title + " | " + base_title
         end
     end
+
+    def formatted_average(average)
+        sprintf("%.2f", average)
+    end
 end
