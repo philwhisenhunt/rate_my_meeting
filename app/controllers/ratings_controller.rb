@@ -1,19 +1,19 @@
 class RatingsController < ApplicationController
 
-    def average
-        #Find the days date
+    # def average
+    #     #Find the days date
         
-        @meeting_date = params[:meeting_date] # add params here
-        @ratings = Rating.where(meeting_date: @meeting_date)
-        #Find all ratings for that date
-        #Add all the ratings together
-        byebug
-        @ratings.sum
+    #     @meeting_date = params[:meeting_date] # add params here
+    #     @ratings = Rating.where(meeting_date: @meeting_date)
+    #     #Find all ratings for that date
+    #     #Add all the ratings together
+    #     byebug
+    #     @ratings.sum
 
-        #Divide by the number of ratings given and Return the average number
-        @daily_average = @ratings / @rating.count
+    #     #Divide by the number of ratings given and Return the average number
+    #     @daily_average = @ratings / @rating.count
 
-    end
+    # end
 
     def save
         #Accept the input of the rating
@@ -47,7 +47,9 @@ class RatingsController < ApplicationController
         # @ratings = Rating.paginate(page: params[:page])
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
-            @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+            @average = Rating.avg(@meeting_date)
+            
+            # @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
             # my_array = []
             # @ratings.each do |thing|
             #    my_array.push(thing.rating)
@@ -61,11 +63,14 @@ class RatingsController < ApplicationController
             # else
             #     @average = "N/A"
             # end
-           @rating = @rating.average
+        #     byebug
+        #    @rating = average(@ratings)
+        #    @ratings.first.average
+
             
         else
-            #Otherwise return everything
-            render 'fragment' #todo: add file piece the include here
+            # Otherwise return everything
+            # render 'fragment' #todo: add file piece the include here
         end
 
     end
