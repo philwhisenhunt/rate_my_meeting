@@ -48,6 +48,7 @@ class RatingsController < ApplicationController
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
             @average = Rating.avg(@meeting_date)
+            @number = Rating.count(@meeting_date)
             
             # @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
             # my_array = []
@@ -69,6 +70,7 @@ class RatingsController < ApplicationController
 
             
         else
+            @average = "No ratings yet"
             # Otherwise return everything
             # render 'fragment' #todo: add file piece the include here
         end
