@@ -2,6 +2,7 @@
 <% provide(:title, 'All users') %>
 <h1>Specific Ratings</h1>
 <h2>Today's average: <%= @daily_average %></h2>
+<h3>Based on: <%= @number %>Ratings</h3>
 <%= will_paginate %>
 <ul class="ratings">
   <% @ratings.each do |user| %>
