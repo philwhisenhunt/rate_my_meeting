@@ -6,7 +6,7 @@
 <%= will_paginate %>
 <ul class="ratings">
   <% @ratings.each do |user| %>
-    <%= render @ratings %>
+    <%= render user.rating %>
   <% end %>
 </ul>
 
