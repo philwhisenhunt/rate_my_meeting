@@ -6,7 +6,7 @@
     <%= f.date_field(:meeting_date, :value => Time.now.strftime('%Y-%m-%d')) %>
 
     <%= f.label :rating %>
-    <h5>Rate from 1 to 10</h5>
+    <h5>Rate the day's meeting from 1 to 10</h5>
     <%= f.number_field(:rating, in: 1..10) %>
 
     <%= f.submit "Rate!", class: "btn btn-primary" %>
