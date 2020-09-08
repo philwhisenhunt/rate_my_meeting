@@ -73,6 +73,7 @@ class RatingsController < ApplicationController
             @average = "No ratings yet"
             # Otherwise return everything
             # render 'fragment' #todo: add file piece the include here
+            # Include a link to a rate now button
         end
 
     end
