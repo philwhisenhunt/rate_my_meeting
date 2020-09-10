@@ -4,7 +4,8 @@
 <h3> Average: <%= formatted_average(@average) %> </h3>
 <% if @ratings.nil? %>
   <%= render 'filter_empty' %>
-  <button> <a href="/rating/new"> Rate now </a></button>
+  <h5>No ratings yet</h5>
+  <button> <a href="/rating/new">Rate now</a></button>
   <% else %>
 
     <%= will_paginate %>
