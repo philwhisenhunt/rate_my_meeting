@@ -1,7 +1,10 @@
 
 <% provide(:title, 'All Ratings') %>
 <h1>All Ratings</h1>
-<h3> Average: <%= formatted_average(@average) %> </h3>
+<%byebug%>
+<% if @average != "No ratings yet"%>
+  <h3> Average: <%= formatted_average(@average) %> </h3>
+<% end %>
 <% if @ratings.nil? %>
   <%= render 'filter_empty' %>
   <h5>No ratings yet</h5>
