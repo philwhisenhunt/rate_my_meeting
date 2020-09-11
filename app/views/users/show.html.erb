@@ -9,7 +9,7 @@
   </aside>
   <div class="col-md-8">
     <% if @user.ratings.any? %>
-      <h3>Ratings (<%= @user.ratings.count %>)</h3>
+      <h3>User has: <%= @user.ratings.count %> ratings</h3>
       <ol class="ratings">
         <%= render @ratings %>
       </ol>
