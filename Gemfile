@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+gem 'faker',          '2.11.0'
+gem 'will_paginate',              '3.1.8'
 
 gem 'rails',      '6.0.3.1'
 gem 'bcrypt',         '3.1.13'

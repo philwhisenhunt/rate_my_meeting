@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :ratings
   resources :users
+  resources :ratings
   get 'sessions/new'
   get 'users/new'
   root 'static_pages#home'
@@ -12,5 +12,9 @@ Rails.application.routes.draw do
   # get '/review', to: 'static_pages/review'
   get 'static_pages/rate'
   get '/signup', to: 'users#new'
-
+  delete '/logout', to: 'sessions#destroy'
+  # get '/ratings', to: 'ratings#index'
+  # get '/rate', to: 'ratings#new'
+  # post '/ratings/new', to: "ratings#create"
+  # get '/ratings/:meeting_date', to: 'ratings#show'
 end

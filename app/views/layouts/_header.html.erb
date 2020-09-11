@@ -1,14 +1,19 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
 <div class="container">
-  <%= link_to "sample app", '#', id: "logo" %>
+  <%= link_to "Rate My Meeting", '/', id: "logo" %>
   <nav>
     <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Home",   '#' %></li>
-      <li><%= link_to "Help",   '#' %></li>
+      <li><%= link_to "Home",   '/' %></li>
+      <li><%= link_to "Rate",   'ratings/new' %></li>
+
       <% if logged_in? %>
-        <li>LOGGED IN</li>
+       <li><%= link_to "Log out", logout_path, method: :delete %></li>
+
       <% end %>
-      
+
+      <% if !logged_in? %>
+        <li><%= link_to "Login",   '/login' %></li>
+      <% end %>
     </ul>
   </nav>
 </div>

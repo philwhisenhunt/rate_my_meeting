@@ -1,74 +1,127 @@
 class RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :edit, :update, :destroy]
 
-  # GET /ratings
-  # GET /ratings.json
-  def index
-    @ratings = Rating.all
-  end
+    # def average
+    #     #Find the days date
+        
+    #     @meeting_date = params[:meeting_date] # add params here
+    #     @ratings = Rating.where(meeting_date: @meeting_date)
+    #     #Find all ratings for that date
+    #     #Add all the ratings together
+    #     byebug
+    #     @ratings.sum
 
-  # GET /ratings/1
-  # GET /ratings/1.json
-  def show
-  end
+    #     #Divide by the number of ratings given and Return the average number
+    #     @daily_average = @ratings / @rating.count
 
-  # GET /ratings/new
-  def new
-    @rating = Rating.new
-  end
+    # end
 
-  # GET /ratings/1/edit
-  def edit
-  end
+    def save
+        #Accept the input of the rating
+        #Save it to the date of the current date
+     
+        if Rating.where(meeting_date: @meeting_date)
+            #overwrite it
+            #Display Updated rating
+        else
+            day = Time.day
+            @meeting_date = day
+            @ratings = User.ratings.where(meeting_date: @meeting_date)
+    
+        end
+        #otherwise just save it and flash saved rating
 
-  # POST /ratings
-  # POST /ratings.json
-  def create
-    @rating = Rating.new(rating_params)
-
-    respond_to do |format|
-      if @rating.save
-        format.html { redirect_to @rating, notice: 'Rating was successfully created.' }
-        format.json { render :show, status: :created, location: @rating }
-      else
-        format.html { render :new }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /ratings/1
-  # PATCH/PUT /ratings/1.json
-  def update
-    respond_to do |format|
-      if @rating.update(rating_params)
-        format.html { redirect_to @rating, notice: 'Rating was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rating }
-      else
-        format.html { render :edit }
-        format.json { render json: @rating.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /ratings/1
-  # DELETE /ratings/1.json
-  def destroy
-    @rating.destroy
-    respond_to do |format|
-      format.html { redirect_to ratings_url, notice: 'Rating was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rating
-      @rating = Rating.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    def update
+        # Find the current entry in the database
+        @rating = User.rating.where(meeting_date: @meeting_date)
+        # Accept the new input of the rating
+        # Add the new rating
+        # User.rating.where(meeting_date: @meeting_date) = @input
+
+    end
+    
+        
+    def index
+        # @users = User.paginate(page: params[:page])
+        # @ratings = Rating.paginate(page: params[:page])
+        if params[:meeting_date]
+            @meeting_date = params[:meeting_date]
+            @average = Rating.avg(@meeting_date)
+            @number = Rating.count(@meeting_date)
+            
+            # @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+            # my_array = []
+            # @ratings.each do |thing|
+            #    my_array.push(thing.rating)
+            # end
+            # total = 0
+            # my_array.each do |piece|
+            #     total = total + piece
+            # end
+            # if my_array.count > 0
+            #     @average = total / my_array.count
+            # else
+            #     @average = "N/A"
+            # end
+        #     byebug
+        #    @rating = average(@ratings)
+        #    @ratings.first.average
+
+            
+        else
+            @average = "No ratings yet"
+            # Otherwise return everything
+            # render 'fragment' #todo: add file piece the include here
+            # Include a link to a rate now button
+        end
+
+    end
+
+    def show
+        
+        if params[:meeting_date]
+            @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
+
+        else
+            @ratings = Rating.first
+        end
+
+    end
+
+    def new
+        
+        #display the page that asks for a rating
+        #make a post request to save the new rating
+        if current_user
+            @rating = current_user.ratings.new
+        
+        else
+            redirect_to login_url
+
+        end
+    end
+
+    def create
+        
+
+        @rating = current_user.ratings.new(rating_params)
+        # byebug
+        if @rating.save
+            # byebug
+            flash[:success] = "Rating created!"
+            redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
+        else
+            flash[:error] = "Rating was not saved"
+            redirect_to root_url 
+
+        end
+    end
+
+    private
+
+ 
     def rating_params
-      params.require(:rating).permit(:content, :user_id, :meeting)
+        params.require(:rating).permit(:rating, :meeting_date)
     end
 end

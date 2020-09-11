@@ -1,19 +1,14 @@
-<div class="center jumbotron">
-    <h1>Rate My Meeting</h1>
-    <p>This is the main page for Rate My Meeting</p>
+<% provide(:title, 'New Rating') %>
+<h1>New Rating</h1>
 
-    <h3>What rating would you give today's meeting?</h3>
-    <p>Your rating:</p>
+<%= form_with(model: @rating, local: true) do |f| %>
+    <%= f.label :meeting_date %>
+    <%= f.date_field(:meeting_date, :value => Time.now.strftime('%Y-%m-%d')) %>
 
+    <%= f.label :rating %>
+    <h5>Rate the day's meeting from 1 to 10</h5>
+    <%= f.number_field(:rating, in: 1..10) %>
 
+    <%= f.submit "Rate!", class: "btn btn-primary" %>
 
-<%= form_with model: @rating, class: "rating-form" do |f| %>
-
-    <%= f.number_field(:ratings, in:1.0..10.0, step: 1.0) %>
-    <%= f.submit("Rate") %>
 <% end %>
-
-
-
-    
-</div>

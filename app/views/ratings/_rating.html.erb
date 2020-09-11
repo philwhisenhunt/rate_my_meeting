@@ -1,0 +1,7 @@
+<li id="rating-<%= rating.id %>">
+  <span class="user"><%= link_to rating.user.name, rating.user %></span>
+  <span class="content">Rating: <strong><%= rating.rating %></strong></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(rating.created_at) %> ago.
+  </span>
+</li>
