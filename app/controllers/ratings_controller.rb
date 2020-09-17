@@ -46,11 +46,12 @@ class RatingsController < ApplicationController
         # @users = User.paginate(page: params[:page])
         # @ratings = Rating.paginate(page: params[:page])
         if params[:meeting_date]
+          
             @meeting_date = params[:meeting_date]
             @average = Rating.avg(@meeting_date)
             @number = Rating.count(@meeting_date)
             
-            # @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+            @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
             # my_array = []
             # @ratings.each do |thing|
             #    my_array.push(thing.rating)
