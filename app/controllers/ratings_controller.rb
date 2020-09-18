@@ -46,30 +46,11 @@ class RatingsController < ApplicationController
         # @users = User.paginate(page: params[:page])
         # @ratings = Rating.paginate(page: params[:page])
         if params[:meeting_date]
-          
             @meeting_date = params[:meeting_date]
             @average = Rating.avg(@meeting_date)
             @number = Rating.count(@meeting_date)
-            
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
-            # my_array = []
-            # @ratings.each do |thing|
-            #    my_array.push(thing.rating)
-            # end
-            # total = 0
-            # my_array.each do |piece|
-            #     total = total + piece
-            # end
-            # if my_array.count > 0
-            #     @average = total / my_array.count
-            # else
-            #     @average = "N/A"
-            # end
-        #     byebug
-        #    @rating = average(@ratings)
-        #    @ratings.first.average
 
-            
         else
             @average = "No ratings yet"
             # Otherwise return everything
