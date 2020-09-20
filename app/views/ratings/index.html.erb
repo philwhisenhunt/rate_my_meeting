@@ -3,17 +3,15 @@
 <h1>All Ratings</h1>
 
 <% if @average != "No ratings yet"%>
-<% end %>
-<% if @ratings.nil? %>
-  <%= render 'filter_empty' %>
-  <% else %>
   <h3> Average: <%= formatted_average(@average) %> </h3>
 
-    <%= will_paginate %>
-    <ul class="ratings">
-        <%= render @ratings %>
-    </ul>
+  <%= will_paginate %>
+  <ul class="ratings">
+      <%= render @ratings %>
+  </ul>
 
-    <%= will_paginate %>
+  <%= will_paginate %>
 
+<% else %>
+  <%= render 'filter_empty' %>
 <% end %>
