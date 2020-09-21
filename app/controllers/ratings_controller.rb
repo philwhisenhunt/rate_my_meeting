@@ -28,8 +28,7 @@ class RatingsController < ApplicationController
     
         
     def index
-        # @users = User.paginate(page: params[:page])
-        # @ratings = Rating.paginate(page: params[:page])
+     
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
             @number = Rating.where(meeting_date: @meeting_date).count
@@ -41,9 +40,6 @@ class RatingsController < ApplicationController
         else
             @ratings = Rating.all.paginate(page: params[:page]).limit(50)
             @average = "No ratings yet"
-           
-            # render 'fragment' #todo: add file piece the include here
-            # Include a link to a rate now button
         end
 
     end
