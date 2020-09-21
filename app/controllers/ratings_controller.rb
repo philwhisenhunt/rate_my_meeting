@@ -32,13 +32,16 @@ class RatingsController < ApplicationController
         # @ratings = Rating.paginate(page: params[:page])
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
-            @average = Rating.avg(@meeting_date)
-            @number = Rating.count(@meeting_date)
+            @number = Rating.where(meeting_date: @meeting_date).count
+            if @number > 0
+                @average = Rating.avg(@meeting_date)
+            end            
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
 
         else
+            @ratings = Rating.all.paginate(page: params[:page]).limit(50)
             @average = "No ratings yet"
-            # Otherwise return everything
+           
             # render 'fragment' #todo: add file piece the include here
             # Include a link to a rate now button
         end
@@ -73,7 +76,9 @@ class RatingsController < ApplicationController
         
 
         @rating = current_user.ratings.new(rating_params)
-        # byebug
+        attempted_date = @rating.meeting_date
+        # User.ratings.where(meeting_date: attempted_date)
+        byebug
         if @rating.save
             # byebug
             flash[:success] = "Rating created!"
