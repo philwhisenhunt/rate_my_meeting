@@ -2,9 +2,10 @@
 <% provide(:title, 'All Ratings') %>
 <h1>All Ratings</h1>
 
-<% if @average != "No ratings yet"%>
-  <h3> Average: <%= formatted_average(@average) %> </h3>
-
+<% if @ratings %>
+  <% if @average != "No ratings yet"%>
+    <h3> Average: <%= formatted_average(@average) %> </h3>
+  <% end %>
   <%= will_paginate %>
   <ul class="ratings">
       <%= render @ratings %>
