@@ -3,6 +3,7 @@ class Rating < ApplicationRecord
     default_scope -> { order(created_at: :desc) }
     # validates :user_id, presence: true
     # validates :content, presence: true
+    validates :rating, presence: true
 
     def self.avg(date)
         self.where(meeting_date: date).average(:rating)
