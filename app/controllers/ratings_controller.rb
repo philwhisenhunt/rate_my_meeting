@@ -19,12 +19,21 @@ class RatingsController < ApplicationController
 
     def update
         # Find the current entry in the database
-        @rating = User.rating.where(meeting_date: @meeting_date)
+        @meeting_date = params[:meeting_date]
+        @updated_rating = params[:rating]
+        @rating = current_user.ratings.where(meeting_date: @meeting_date)
+        if @rating.update_attributes(meeting_date: @meeting_date, rating: updated_rating)
+            redirect_to ratings_path(meeting_date: @rating.meeting_date)
+        else
+            render :edit
+        end
         # Accept the new input of the rating
         # Add the new rating
         # User.rating.where(meeting_date: @meeting_date) = @input
 
     end
+    # Add an edit view
+
     
         
     def index
@@ -74,16 +83,16 @@ class RatingsController < ApplicationController
         @rating = current_user.ratings.new(rating_params)
         attempted_date = @rating.meeting_date
         # byebug
-        if Rating.where(meeting_date: attempted_date).count > 0
-            # byebug
-            flash[:danger] = "You've already rated this meeting."
-            redirect_to '/ratings/new'
-        elsif @rating.save
+        # if Rating.where(meeting_date: attempted_date).count > 0
+        #     # byebug
+        #     flash[:danger] = "You've already rated this meeting."
+        #     redirect_to '/ratings/new'
+        if @rating.save
             flash[:success] = "Rating created!"
             redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
         else
-            flash[:error] = "Rating was not saved"
-            redirect_to root_url 
+            flash[:danger] = "Rating was not saved"
+            render :new
         end
     end
 
