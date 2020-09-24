@@ -48,9 +48,10 @@ class RatingsController < ApplicationController
         
         if params[:meeting_date]
             @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
+            @number = Rating.where(meeting_date: @meeting_date).count
 
         else
-            @ratings = Rating.first
+            @ratings = Rating.all.limit(30)
         end
 
     end
