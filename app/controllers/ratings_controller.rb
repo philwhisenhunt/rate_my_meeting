@@ -74,6 +74,7 @@ class RatingsController < ApplicationController
         @rating = current_user.ratings.new(rating_params)
         attempted_date = @rating.meeting_date
         if Rating.where(meeting_date: attempted_date)
+            flash[:error] = "You've already rated this meeting"
            byebug
         end
         # byebug
