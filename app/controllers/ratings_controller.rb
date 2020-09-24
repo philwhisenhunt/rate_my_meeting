@@ -70,25 +70,18 @@ class RatingsController < ApplicationController
 
     def create
         
-
         @rating = current_user.ratings.new(rating_params)
         attempted_date = @rating.meeting_date
         if Rating.where(meeting_date: attempted_date)
-            flash[:danger] = "You've already rated this meeting"
-        #    byebug
-        end
-        # byebug
-        # User.ratings.where(meeting_date: attempted_date)
-        # byebug
-        if @rating.save
+            # byebug
+            flash[:danger] = "You've already rated this meeting."
+            redirect_to '/ratings/new'
+        elsif @rating.save
             flash[:success] = "Rating created!"
             redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
         else
-            # byebug
-
             flash[:error] = "Rating was not saved"
             redirect_to root_url 
-
         end
     end
 
