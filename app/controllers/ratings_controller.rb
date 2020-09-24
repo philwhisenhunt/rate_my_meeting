@@ -46,13 +46,13 @@ class RatingsController < ApplicationController
 
     def show
         
-        if params[:meeting_date]
-            @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
-            @number = Rating.where(meeting_date: @meeting_date).count
+        # if params[:meeting_date]
+        #     @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
+        #     @number = Rating.where(meeting_date: @meeting_date).count
 
-        else
-            @ratings = Rating.all.limit(30)
-        end
+        # else
+        #     @ratings = Rating.all.limit(30)
+        # end
 
     end
 
@@ -73,7 +73,8 @@ class RatingsController < ApplicationController
         
         @rating = current_user.ratings.new(rating_params)
         attempted_date = @rating.meeting_date
-        if Rating.where(meeting_date: attempted_date)
+        # byebug
+        if Rating.where(meeting_date: attempted_date).count > 0
             # byebug
             flash[:danger] = "You've already rated this meeting."
             redirect_to '/ratings/new'
