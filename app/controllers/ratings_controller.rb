@@ -19,10 +19,13 @@ class RatingsController < ApplicationController
 
     def update
         # Find the current entry in the database
-        @meeting_date = params[:meeting_date]
-        @updated_rating = params[:rating]
-        @rating = current_user.ratings.where(meeting_date: @meeting_date)
-        if @rating.update_attributes(meeting_date: @meeting_date, rating: updated_rating)
+        # @meeting_date = params[:meeting_date]
+            # @rating = current_user.ratings.where(meeting_date: @meeting_date)
+        @rating = Rating.find(params[:id])
+        @meeting_date = @rating.meeting_date
+        # byebug
+        if @rating.update(rating: 9)
+            byebug
             redirect_to ratings_path(meeting_date: @rating.meeting_date)
         else
             render :edit
@@ -35,6 +38,8 @@ class RatingsController < ApplicationController
     # Add an edit view
     def edit
         #
+        @rating = Rating.find(params[:id])
+        @meeting_date = @rating.meeting_date
     end
 
     
