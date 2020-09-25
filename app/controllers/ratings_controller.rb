@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
         # Find the current entry in the database
         # @meeting_date = params[:meeting_date]
             # @rating = current_user.ratings.where(meeting_date: @meeting_date)
-        @rating = Rating.find(params[:id])
+        @rating = current_user.ratings.find(params[:id])
         @meeting_date = @rating.meeting_date
       
         if @rating.update(rating_params)            
@@ -23,7 +23,7 @@ class RatingsController < ApplicationController
     # Add an edit view
     def edit
         #
-        @rating = Rating.find(params[:id])
+        @rating = current_user.ratings.find(params[:id])
         @meeting_date = @rating.meeting_date
     end
 
