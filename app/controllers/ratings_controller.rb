@@ -33,6 +33,9 @@ class RatingsController < ApplicationController
 
     end
     # Add an edit view
+    def edit
+        #
+    end
 
     
         
