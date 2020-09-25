@@ -1,2 +1,12 @@
 <% provide(:title, "Edit") %>
 <h1>Edit Rating</h1>
+
+<%= form_with(model: @rating, local: true) do |f| %>
+    <%= f.label :meeting_date %>
+    <%= f.date_field(:meeting_date, :value => Time.now.strftime('%Y-%m-%d')) %>
+
+    <% f.label :rating %>
+    <h5>Edit the day's meeting rating</h5>
+    <%= f.number_field(:rating, in:1..10) %>
+    <%= f.submit "Rate!", class: "btn btn-primary" %>
+<% end %>
