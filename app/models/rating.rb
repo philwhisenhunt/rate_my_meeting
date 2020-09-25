@@ -4,7 +4,7 @@ class Rating < ApplicationRecord
     # validates :user_id, presence: true
     # validates :content, presence: true
     validates :rating, presence: true
-    validate :only_one_meeting_per_day
+    # validate :only_one_meeting_per_day
 
     def self.avg(date)
         self.where(meeting_date: date).average(:rating)
