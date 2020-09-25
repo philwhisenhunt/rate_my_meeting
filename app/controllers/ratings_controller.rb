@@ -1,12 +1,11 @@
 class RatingsController < ApplicationController
-
+    before_action :get_rating, only: [:edit, :update]
 
 
     def update
         # Find the current entry in the database
         # @meeting_date = params[:meeting_date]
             # @rating = current_user.ratings.where(meeting_date: @meeting_date)
-        @rating = current_user.ratings.find(params[:id])
         @meeting_date = @rating.meeting_date
       
         if @rating.update(rating_params)            
@@ -23,7 +22,6 @@ class RatingsController < ApplicationController
     # Add an edit view
     def edit
         #
-        @rating = current_user.ratings.find(params[:id])
         @meeting_date = @rating.meeting_date
     end
 
@@ -90,6 +88,9 @@ class RatingsController < ApplicationController
     end
 
     private
+    def get_rating
+        @rating = current_user.ratings.find(params[:id])
+    end
 
  
     def rating_params
