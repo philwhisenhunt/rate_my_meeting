@@ -23,9 +23,9 @@ class RatingsController < ApplicationController
             # @rating = current_user.ratings.where(meeting_date: @meeting_date)
         @rating = Rating.find(params[:id])
         @meeting_date = @rating.meeting_date
-        # byebug
-        if @rating.update(rating: 9)
-            byebug
+      
+        if @rating.update(rating_params)            
+           
             redirect_to ratings_path(meeting_date: @rating.meeting_date)
         else
             render :edit
