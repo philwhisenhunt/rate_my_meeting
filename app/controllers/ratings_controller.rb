@@ -3,9 +3,6 @@ class RatingsController < ApplicationController
 
 
     def update
-        # Find the current entry in the database
-        # @meeting_date = params[:meeting_date]
-            # @rating = current_user.ratings.where(meeting_date: @meeting_date)
         @meeting_date = @rating.meeting_date
       
         if @rating.update(rating_params)            
@@ -15,14 +12,10 @@ class RatingsController < ApplicationController
             flash[:danger] = "Rating was not updated"
             render :edit
         end
-        # Accept the new input of the rating
-        # Add the new rating
-        # User.rating.where(meeting_date: @meeting_date) = @input
 
     end
-    # Add an edit view
+   
     def edit
-        #
         @meeting_date = @rating.meeting_date
     end
 
