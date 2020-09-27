@@ -12,7 +12,7 @@ class RatingsController < ApplicationController
            
             redirect_to ratings_path(meeting_date: @rating.meeting_date)
         else
-            flash[:danger] = "Rating was not saved"
+            flash[:danger] = "Rating was not updated"
             render :edit
         end
         # Accept the new input of the rating
