@@ -1,5 +1,5 @@
 class RatingsController < ApplicationController
-    before_action :get_rating, only: [:edit, :update]
+    before_action :get_rating, only: [:edit, :update, :show]
 
 
     def update
