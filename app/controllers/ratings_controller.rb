@@ -28,12 +28,17 @@ class RatingsController < ApplicationController
             @number = Rating.where(meeting_date: @meeting_date).count
             if @number > 0
                 @average = Rating.avg(@meeting_date)
+            else
+                @average = "No ratings yet"
+                render :empty
+
             end            
             @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
 
         else
-            @ratings = Rating.all.paginate(page: params[:page]).limit(50)
+            # @ratings = Rating.all.paginate(page: params[:page]).limit(50)
             @average = "No ratings yet"
+            render :empty
         end
 
     end
