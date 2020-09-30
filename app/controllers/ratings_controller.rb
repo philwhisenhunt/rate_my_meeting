@@ -37,7 +37,7 @@ class RatingsController < ApplicationController
 
         else
             # @ratings = Rating.all.paginate(page: params[:page]).limit(50)
-            @average = "No ratings yet"
+            # @average = "No ratings yet"
             render :empty
         end
 
