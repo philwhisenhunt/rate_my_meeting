@@ -1,6 +1,5 @@
 <% provide(:title, 'New Rating') %>
 <h1>New Rating</h1>
-<%= @rating.errors.full_messages %>
 <%= form_with(model: @rating, local: true) do |f| %>
     <%= f.label :meeting_date %>
     <%= f.date_field(:meeting_date, :value => Time.now.strftime('%Y-%m-%d')) %>
