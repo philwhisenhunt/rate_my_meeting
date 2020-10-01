@@ -5,7 +5,7 @@
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "Home",   '/' %></li>
       <li><%= link_to "Rate",   '/ratings/new' %></li>
-      <li><%= link_to "Ratings", 'ratings' %></li>
+      <li><%= link_to "Ratings", '/ratings' %></li>
 
       <% if logged_in? %>
        <li><%= link_to "Log out", logout_path, method: :delete %></li>
