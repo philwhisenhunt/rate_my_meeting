@@ -75,7 +75,11 @@ class RatingsController < ApplicationController
         # byebug
         if Rating.where(meeting_date: attempted_date).count > 0
             # byebug
-            flash[:danger] = "You've already rated this meeting. Click here to edit your ratings"
+            # @message = "You've already rated this meeting. #{view_context.link_to('Click here', edit_rating_path(id: @rating.meeting_date))} to edit your ratings"
+            # flash[:danger] = message.html_safe
+            # flash[:danger] = "You've already rated this meeting. #{view_context.link_to('Click here', edit_rating_path(id: @rating.meeting_date))} to edit your ratings"
+            #{view_context.link_to 'here', ratings_path}
+            flash[:danger] = "You've already rated this meeting."
             redirect_to '/ratings/new'
         elsif @rating.save
             flash[:success] = "Rating created!"
