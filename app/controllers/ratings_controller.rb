@@ -73,14 +73,14 @@ class RatingsController < ApplicationController
         @rating = current_user.ratings.new(rating_params)
         attempted_date = @rating.meeting_date
        
-        if Rating.where(meeting_date: attempted_date).count > 0
-            flash[:danger] = "You've already rated this meeting. Click edit to update"
-            redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
-        elsif @rating.save
+        # if Rating.where(meeting_date: attempted_date).count > 0
+        #     flash[:danger] = "You've already rated this meeting. Click edit to update"
+        #     redirect_to ratings_url(meeting_date: @rating.meeting_date)
+        if @rating.save
             flash[:success] = "Rating created!"
-            redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
+            redirect_to ratings_url(meeting_date: @rating.meeting_date)
         else
-            flash[:danger] = "Rating was not saved"
+            # flash[:danger] = "Rating was not saved"
             render :new
         end
     end
