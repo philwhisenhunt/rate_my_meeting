@@ -2,20 +2,17 @@
 <% provide(:title, 'All Ratings') %>
 <h1>All Ratings</h1>
 
-<% if @average != "No ratings yet"%>
-<% end %>
-<% if @ratings.nil? %>
+<% if @ratings %>
+  <% if @average != "No ratings yet"%>
+    <h3> Average: <%= formatted_average(@average) %> </h3>
+  <% end %>
+  <%= will_paginate %>
+  <ul class="ratings">
+      <%= render @ratings %>
+  </ul>
+
+  <%= will_paginate %>
+
+<% else %>
   <%= render 'filter_empty' %>
-  <% else %>
-  <h3> Average: <%= formatted_average(@average) %> </h3>
-
-    <%= will_paginate %>
-    <ul class="ratings">
-      <% @ratings.each do |user| %>
-        <%= render @ratings %>
-      <% end %>
-    </ul>
-
-    <%= will_paginate %>
-
 <% end %>

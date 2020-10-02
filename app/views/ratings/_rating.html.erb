@@ -4,4 +4,7 @@
   <span class="timestamp">
     Posted <%= time_ago_in_words(rating.created_at) %> ago.
   </span>
+  <% if rating.user == current_user %>
+    <span class "edit-link"><%= link_to "Edit", edit_rating_path(rating) %></span>
+  <% end %>
 </li>

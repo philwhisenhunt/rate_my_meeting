@@ -1,91 +1,57 @@
 class RatingsController < ApplicationController
+    before_action :get_rating, only: [:edit, :update, :show]
 
-    # def average
-    #     #Find the days date
-        
-    #     @meeting_date = params[:meeting_date] # add params here
-    #     @ratings = Rating.where(meeting_date: @meeting_date)
-    #     #Find all ratings for that date
-    #     #Add all the ratings together
-    #     byebug
-    #     @ratings.sum
-
-    #     #Divide by the number of ratings given and Return the average number
-    #     @daily_average = @ratings / @rating.count
-
-    # end
-
-    def save
-        #Accept the input of the rating
-        #Save it to the date of the current date
-     
-        if Rating.where(meeting_date: @meeting_date)
-            #overwrite it
-            #Display Updated rating
-        else
-            day = Time.day
-            @meeting_date = day
-            @ratings = User.ratings.where(meeting_date: @meeting_date)
-    
-        end
-        #otherwise just save it and flash saved rating
-
-    end
 
     def update
-        # Find the current entry in the database
-        @rating = User.rating.where(meeting_date: @meeting_date)
-        # Accept the new input of the rating
-        # Add the new rating
-        # User.rating.where(meeting_date: @meeting_date) = @input
+        @meeting_date = @rating.meeting_date
+      
+        if @rating.update(rating_params)            
+           
+            redirect_to ratings_path(meeting_date: @rating.meeting_date)
+        else
+            flash[:danger] = "Rating was not updated"
+            render :edit
+        end
 
     end
+   
+    def edit
+        @meeting_date = @rating.meeting_date
+    end
+
     
         
     def index
-        # @users = User.paginate(page: params[:page])
-        # @ratings = Rating.paginate(page: params[:page])
+     
         if params[:meeting_date]
             @meeting_date = params[:meeting_date]
-            @average = Rating.avg(@meeting_date)
-            @number = Rating.count(@meeting_date)
-            
-            # @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
-            # my_array = []
-            # @ratings.each do |thing|
-            #    my_array.push(thing.rating)
-            # end
-            # total = 0
-            # my_array.each do |piece|
-            #     total = total + piece
-            # end
-            # if my_array.count > 0
-            #     @average = total / my_array.count
-            # else
-            #     @average = "N/A"
-            # end
-        #     byebug
-        #    @rating = average(@ratings)
-        #    @ratings.first.average
+            @number = Rating.where(meeting_date: @meeting_date).count
+            if @number > 0
+                @average = Rating.avg(@meeting_date)
+            else
+                @average = "No ratings yet"
+                render :empty
 
-            
+            end            
+            @ratings = Rating.where(meeting_date: @meeting_date).paginate(page: params[:page])
+
         else
-            @average = "No ratings yet"
-            # Otherwise return everything
-            # render 'fragment' #todo: add file piece the include here
-            # Include a link to a rate now button
+            # @ratings = Rating.all.paginate(page: params[:page]).limit(50)
+            # @average = "No ratings yet"
+            render :empty
         end
 
     end
 
     def show
         
-        if params[:meeting_date]
-            @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
+        # if params[:meeting_date]
+        #     @ratings = Rating.where(meeting_date: meeting_date).paginate(page: params[:page])
+        #     @number = Rating.where(meeting_date: @meeting_date).count
 
-        else
-            @ratings = Rating.first
-        end
+        # else
+        #     @ratings = Rating.all.limit(30)
+        # end
 
     end
 
@@ -104,21 +70,30 @@ class RatingsController < ApplicationController
 
     def create
         
-
         @rating = current_user.ratings.new(rating_params)
+        attempted_date = @rating.meeting_date
         # byebug
-        if @rating.save
+        if Rating.where(meeting_date: attempted_date).count > 0
             # byebug
+            # @message = "You've already rated this meeting. #{view_context.link_to('Click here', edit_rating_path(id: @rating.meeting_date))} to edit your ratings"
+            # flash[:danger] = message.html_safe
+            # flash[:danger] = "You've already rated this meeting. #{view_context.link_to('Click here', edit_rating_path(id: @rating.meeting_date))} to edit your ratings"
+            #{view_context.link_to 'here', ratings_path}
+            flash[:danger] = "You've already rated this meeting."
+            redirect_to '/ratings/new'
+        elsif @rating.save
             flash[:success] = "Rating created!"
             redirect_to root_url + 'ratings' + "?meeting_date=" + "#{@rating.meeting_date}"
         else
-            flash[:error] = "Rating was not saved"
-            redirect_to root_url 
-
+            flash[:danger] = "Rating was not saved"
+            render :new
         end
     end
 
     private
+    def get_rating
+        @rating = current_user.ratings.find(params[:id])
+    end
 
  
     def rating_params
