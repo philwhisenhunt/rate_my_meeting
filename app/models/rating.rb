@@ -5,6 +5,7 @@ class Rating < ApplicationRecord
     # validates :content, presence: true
     validates :rating, presence: true
     validate :only_one_meeting_per_day, on: :create
+    #Add restriction for editing ratings for other days
 
     def self.avg(date)
         self.where(meeting_date: date).average(:rating)
