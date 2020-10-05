@@ -20,6 +20,11 @@ class Rating < ApplicationRecord
             # Confirm this works 
          end
     end
+
+    def only_rate_within_one_week
+        #if rating meeting_date - day.today > 7
+        #   give an error
+    end
     # def average(ratings)
     #     # @ratings = ratings
     #     # @ratings_count = @ratings.count
