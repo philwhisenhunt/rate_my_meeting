@@ -6,6 +6,7 @@ class Rating < ApplicationRecord
     validates :rating, presence: true
     validate :only_one_meeting_per_day, on: :create
     #Add restriction for editing ratings for other days
+    validate :only_edit_current_day, on: :update
 
     def self.avg(date)
         self.where(meeting_date: date).average(:rating)
@@ -21,8 +22,13 @@ class Rating < ApplicationRecord
          end
     end
 
-    def only_rate_within_one_week
-        #if rating meeting_date - day.today > 7
+    def only_edit_current_day
+        #if rating meeting_date Date.today
+        
+
+        if meeting_date == Time.now.strftime('%Y-%m-%d')
+            # byebug
+        end
         #   give an error
     end
     # def average(ratings)
