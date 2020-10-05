@@ -26,8 +26,8 @@ class Rating < ApplicationRecord
         #if rating meeting_date Date.today
         
 
-        if meeting_date == Time.now.strftime('%Y-%m-%d')
-            # byebug
+        if meeting_date != Time.now.strftime('%Y-%m-%d')
+            errors.add(:meeting_date, "You can only today's meeting rating.")
         end
         #   give an error
     end
