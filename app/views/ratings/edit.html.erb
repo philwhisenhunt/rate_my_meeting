@@ -1,5 +1,7 @@
 <% provide(:title, "Edit") %>
 <h1>Edit Rating</h1>
+<p>Ratings can be edited only on the day of the meeting.</p>
+<%= render partial: 'shared/errors', locals:{object:@rating}%>
 
 <%= form_with(model: @rating, local: true, :method => :put) do |f| %>
     <%= f.label :meeting_date %>
