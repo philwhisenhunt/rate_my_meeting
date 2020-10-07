@@ -27,6 +27,10 @@ class User < ApplicationRecord
         remember_digest
     end
 
+    def session_token
+        remember_digest || remember
+    end
+
     private
     def downcase_email
         email.downcase!
