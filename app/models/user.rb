@@ -28,6 +28,10 @@ class User < ApplicationRecord
         remember_digest
     end
 
+    def authenticated?(remember_token)
+        BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    end
+
     def session_token
         remember_digest || remember
     end
