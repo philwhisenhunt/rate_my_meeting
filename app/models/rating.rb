@@ -31,32 +31,6 @@ class Rating < ApplicationRecord
         end
         #   give an error
     end
-    # def average(ratings)
-    #     # @ratings = ratings
-    #     # @ratings_count = @ratings.count
-    #     # @ratings.each do |rating|
-    #     #     @ratings_sum += rating.content
-    #     #     puts @ratings_sum
-    #     # end
-   
-    #     # @ratings_sum = @ratings.sum
-    #     # average = @ratings_sum/@ratings_count
-
-    #     byebug
-    #     my_array = []
-    #     ratings.each do |rating|
-    #        my_array.push(rating.rating)
-    #     end
-    #     total = 0
-    #     my_array.each do |piece|
-    #         total = total + piece
-    #     end
-    #     if my_array.count > 0
-    #         @average = total / my_array.count
-    #     else
-    #         @average = "N/A"
-    #     end
-    # end
 
 
 end
