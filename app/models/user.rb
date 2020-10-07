@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    attr_accessor :remember_token
     has_many :ratings, dependent: :destroy
     before_save :downcase_email
     before_create :create_activation_digest
