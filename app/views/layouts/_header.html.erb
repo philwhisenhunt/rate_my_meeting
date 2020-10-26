@@ -6,6 +6,9 @@
       <li><%= link_to "Home",   root_path %></li>
       <li><%= link_to "Rate",   new_rating_path %></li>
       <li><%= link_to "Ratings", ratings_path(meeting_date: Date.today.to_s) %></li>
+      <% if logged_in? %>
+      <li<%= link_to "Users", users_path %></li>
+      <% end %>
 
       <% if logged_in? %>
        <li><%= link_to "Log out", logout_path, method: :delete %></li>
