@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token
+    # Create getter and setter methods for things that may not exist
+    # Getter and setter are terms for OOP used to describe a class 
+    attr_accessor :remember_token, :activation_token
     has_many :ratings, dependent: :destroy
     before_save :downcase_email
     before_create :create_activation_digest
@@ -9,7 +11,7 @@ class User < ApplicationRecord
                                         format: { with: VALID_EMAIL_REGEX },
                                         uniqueness: {case_sensitive: false }
     has_secure_password
-    validates :password, presence: true, length: { minimum: 6}, allow_nil: false
+    validates :password, presence: true, length: { minimum: 6}, allow_nil: true
 
     # Create a hash digest of the string 
     def User.digest(string)
@@ -47,6 +49,7 @@ class User < ApplicationRecord
     end
 
     def create_activation_digest
+        byebug
         self.activation_token = User.new_token
         self.activation_digest = User.digest(activation_token)
     end
